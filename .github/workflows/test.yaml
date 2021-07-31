@@ -20,3 +20,4 @@ jobs:
       env:
         ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         ACTIONS_RUNTIME_URL: ${{ env.ACTIONS_RUNTIME_URL }}
+        GITHUB_RUN_ID: ${env.GITHUB_RUN_ID}
