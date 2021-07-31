@@ -5,7 +5,7 @@ ARG rosdistro
 ARG workspace
 FROM ${base_image}:${tag}
 
-RUN mkdir -p ${workspace}
+RUN mkdir -p $workspace
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
