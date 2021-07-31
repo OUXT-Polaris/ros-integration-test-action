@@ -3,6 +3,7 @@ ARG base_image
 ARG tag
 ARG rosdistro
 ARG workspace
+ENV workspace=$workspace
 FROM ${base_image}:${tag}
 
 RUN mkdir -p $workspace
