@@ -15,7 +15,7 @@ ENV DEBCONF_NOWARNINGS=yes
 RUN mkdir -p /artifacts
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget nodejs npm
 RUN wget ${repos_url} -O packages.repos
 RUN vcs import src < packages.repos
 RUN source /opt/ros/${rosdistro}/setup.bash && rosdep install -iry --from-paths src --rosdistro ${rosdistro}

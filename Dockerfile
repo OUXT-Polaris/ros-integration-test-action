@@ -1,6 +1,4 @@
 FROM alpine:latest
-RUN apk add --no-cache nodejs npm
-RUN npm install -g @actions/github
 
 WORKDIR /
 RUN mkdir -p /artifacts
