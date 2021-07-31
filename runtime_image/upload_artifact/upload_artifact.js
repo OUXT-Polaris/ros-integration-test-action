@@ -83,6 +83,12 @@ function run() {
                 case 0: return [4 /*yield*/, artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)];
                 case 1:
                     uploadResult = _a.sent();
+                    if (uploadResult.failedItems.length > 0) {
+                        console.log("failed to upload artifact");
+                    }
+                    else {
+                        console.log("all files uploaded");
+                    }
                     return [2 /*return*/];
             }
         });
