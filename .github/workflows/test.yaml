@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: A test job for ros2 scenario test action
+    steps:
+    # To use this repository's private action, you must check out the repository
+    - uses: actions/checkout@v2
+    - name: Run ROS2 scenario test action
+      uses: ./
+      with:
+        base-image: ros
+        tag: foxy
