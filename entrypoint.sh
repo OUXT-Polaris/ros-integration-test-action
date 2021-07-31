@@ -22,7 +22,9 @@ docker build -t runtime_image \
     && docker run runtime_image \
     -v /artifacts /artifacts
 
+echo "===== Artifacts ====="
 ls /artifacts
+echo "===== Artifacts ====="
 cd ../upload_artifact
 npm install
 npm run upload
