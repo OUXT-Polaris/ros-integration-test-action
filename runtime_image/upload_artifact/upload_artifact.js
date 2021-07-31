@@ -4,7 +4,13 @@ const artifactClient = artifact.create()
 const artifactName = 'scenario_test_artifacts';
 const rootDirectory = '/artifacts'
 const files = fs.readdirSync(rootDirectory);
+const artifacts = [];
+
+files.forEach(file => {
+  artifacts.push(rootDirectory + '/' + file);
+});
+
 const options = {
     continueOnError: true
 }
-artifactClient.uploadArtifact(artifactName, files, rootDirectory, options)
+artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)
