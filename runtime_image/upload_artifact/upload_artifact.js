@@ -14,4 +14,5 @@ files.forEach(file => {
 const options = {
   continueOnError: true
 }
-artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)
+
+const uploadResult = await artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)
