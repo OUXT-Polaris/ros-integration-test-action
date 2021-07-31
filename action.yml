@@ -1,6 +1,6 @@
 # action.yml
 name: 'Scenario test action'
-description: 'scenario test action for ROS2 package'
+description: 'scenario test action for ROS packages'
 inputs:
   base-image:
     description: 'name of base image'
@@ -10,9 +10,14 @@ inputs:
     description: 'name of tag'
     required: false
     default: 'foxy'
+  rosdistro:
+    description: 'name of rosdistro'
+    required: false
+    default: 'foxy'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.base-image }}
     - ${{ inputs.tag }}
+    - ${{ inputs.rosdistro }}

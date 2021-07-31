@@ -1,6 +1,7 @@
 # Container image that runs your code
 ARG base_image
 ARG tag
+ARG rosdistro
 FROM ${base_image}:${tag}
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
