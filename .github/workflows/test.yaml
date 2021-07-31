@@ -17,5 +17,3 @@ jobs:
         repos_url: https://raw.githubusercontent.com/OUXT-Polaris/ros-scenario-test-action/master/.github/workflows/test.repos
         test_command: ls /colcon_ws/src
         check_result_command: ls /colcon_ws/src
-    - name: Check artifact
-      run: ls /artifacts
