@@ -19,4 +19,4 @@ jobs:
         check_result_command: ls /colcon_ws/src
       env:
         ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        ACTIONS_RUNTIME_URL: ${{ secrets.ACTIONS_RUNTIME_URL }}
+        ACTIONS_RUNTIME_URL: ${{ env.ACTIONS_RUNTIME_URL }}
