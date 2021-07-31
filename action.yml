@@ -14,8 +14,8 @@ inputs:
     description: 'name of rosdistro'
     required: false
     default: 'foxy'
-  repos_file:
-    description: 'path to the repos file'
+  repos_url:
+    description: 'url of repos file you want to use'
     required: true
 runs:
   using: 'docker'
@@ -24,4 +24,4 @@ runs:
     - ${{ inputs.base-image }}
     - ${{ inputs.tag }}
     - ${{ inputs.rosdistro }}
-    - ${{ inputs.repos_file }}
+    - ${{ inputs.repos_url }}
