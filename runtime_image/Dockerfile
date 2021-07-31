@@ -7,7 +7,7 @@ FROM ${base_image}:${tag}
 
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
-RUN apt-get update && apt-get -y wget
+RUN apt-get update && apt-get install -y wget
 RUN wget ${repos_url}
 RUN ls /colcon_ws
 RUN cat /colcon_ws/${repos_url}
