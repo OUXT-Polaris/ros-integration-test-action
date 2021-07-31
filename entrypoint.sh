@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh -l
 
 BASE_IMAGE=$1
 TAG=$2
