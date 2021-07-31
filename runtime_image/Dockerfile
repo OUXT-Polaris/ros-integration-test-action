@@ -12,6 +12,7 @@ ENV DEBCONF_NOWARNINGS=yes
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
 RUN apt-get update && apt-get install -y wget
+RUN echo  ${repos_url}
 RUN wget ${repos_url}
 RUN ls /colcon_ws
 RUN cat /colcon_ws/${repos_url}
