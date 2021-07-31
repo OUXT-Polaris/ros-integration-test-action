@@ -5,6 +5,10 @@ ARG rosdistro
 ARG repos_url
 FROM ${base_image}:${tag}
 
+SHELL ["/bin/bash", "-c"]
+ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NOWARNINGS=yes
+
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
 RUN apt-get update && apt-get install -y wget
