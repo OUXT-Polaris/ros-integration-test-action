@@ -13,7 +13,7 @@ touch entrypoint.sh
 echo "#!/bin/sh -l" >> entrypoint.sh
 echo "ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
 echo "export ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
-echo "ACTIONS_RUNTIME_URL:=$ACTIONS_RUNTIME_URL" >> entrypoint.sh
+echo "ACTIONS_RUNTIME_URL=$ACTIONS_RUNTIME_URL" >> entrypoint.sh
 echo "export ACTIONS_RUNTIME_URL" >> entrypoint.sh
 echo "sh /opt/ros/$ROSDISTRO/setup.sh" >> entrypoint.sh
 echo "sh /colcon_ws/install/local_setup.sh" >> entrypoint.sh
