@@ -15,7 +15,8 @@ WORKDIR /colcon_ws
 RUN apt-get update && apt-get install -y wget
 RUN wget ${repos_url} -O packages.repos
 RUN vcs import src < packages.repos
-RUN source /opt/ros/${rosdistro}/setup.sh && rosdep install -iry --from-paths src --rosdistro ${rosdistro}
+RUN source /opt/ros/${rosdistro}/setup.bash && rosdep install -iry --from-paths src --rosdistro ${rosdistro}
+RUN source /opt/ros/${rosdistro}/setup.bash && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
