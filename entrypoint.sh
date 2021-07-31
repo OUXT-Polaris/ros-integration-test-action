@@ -20,7 +20,7 @@ docker build -t runtime_image \
     --build-arg check_result_command="$CHECK_RESULT_COMMAND" \
     . \
     && docker run runtime_image \
-    -v /artifacts /artifacts
+    -v /artifacts:/artifacts
 
 echo "===== Artifacts ====="
 ls /artifacts
