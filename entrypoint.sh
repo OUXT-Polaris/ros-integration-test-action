@@ -18,9 +18,7 @@ echo $CHECK_RESULT_COMMAND >> entrypoint.sh
 echo "cd /upload_artifact" >> entrypoint.sh
 echo "npm install" >> entrypoint.sh
 echo "npm run upload" >> entrypoint.sh
-
-echo "Entrypoint of runtime image"
-cat entrypoint.sh
+echo "export ACTIONS_RUNTIME_TOKEN $ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
