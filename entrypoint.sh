@@ -12,7 +12,7 @@ cd /runtime_image
 docker build -t runtime_image \
     --build-arg base_image="$BASE_IMAGE" \
     --build-arg tag="$TAG" \
-    --build-args ros_distro="$ROS_DISTRO" \
-    --build-args workspace="$WORKSPACE" \
+    --build-arg ros_distro="$ROS_DISTRO" \
+    --build-arg workspace="$WORKSPACE" \
     . \
     && docker run runtime_image
