@@ -16,6 +16,6 @@ docker build -t runtime_image \
     --build-arg rosdistro="$ROSDISTRO" \
     --build-arg repos_url="$REPOS_URL" \
     --build-arg test_command="$TEST_COMMAND" \
-    -v /artifacts /artifacts
     . \
-    && docker run runtime_image
+    && docker run runtime_image \
+    -v /artifacts /artifacts
