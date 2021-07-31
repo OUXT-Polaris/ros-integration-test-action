@@ -15,6 +15,9 @@ echo "sh /opt/ros/$ROSDISTRO/setup.sh" >> entrypoint.sh
 echo "sh /colcon_ws/install/local_setup.sh" >> entrypoint.sh
 echo $TEST_COMMAND >> entrypoint.sh
 echo $CHECK_RESULT_COMMAND >> entrypoint.sh
+echo "cd /upload_artifact" >> entrypoint.sh
+echo "npm install" >> entrypoint.sh
+echo "npm run upload" >> entrypoint.sh
 
 echo "Entrypoint of runtime image"
 cat entrypoint.sh
@@ -27,11 +30,4 @@ docker build -t runtime_image \
     --build-arg rosdistro="$ROSDISTRO" \
     --build-arg repos_url="$REPOS_URL" \
     . \
-    && docker run -v /artifacts:/artifacts runtime_image
-
-echo "===== Artifacts ====="
-ls /artifacts
-echo "===== Artifacts ====="
-cd ../upload_artifact
-npm install
-npm run upload
+    && docker run runtime_image
