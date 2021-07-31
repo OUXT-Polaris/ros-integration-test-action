@@ -77,10 +77,12 @@ var options = {
 };
 function run() {
     return __awaiter(this, void 0, void 0, function () {
-        var uploadResult;
+        var uploadResult, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)];
                 case 1:
                     uploadResult = _a.sent();
                     if (uploadResult.failedItems.length > 0) {
@@ -89,7 +91,12 @@ function run() {
                     else {
                         console.log("all files uploaded");
                     }
-                    return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 2:
+                    err_1 = _a.sent();
+                    console.log(err_1.message);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });

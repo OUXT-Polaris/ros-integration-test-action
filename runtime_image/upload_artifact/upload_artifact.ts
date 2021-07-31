@@ -44,12 +44,17 @@ const options = {
 }
 
 async function run(): Promise<void> {
-  const uploadResult = await artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)
-  if (uploadResult.failedItems.length > 0) {
-    console.log("failed to upload artifact");
+  try {
+    const uploadResult = await artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)
+    if (uploadResult.failedItems.length > 0) {
+      console.log("failed to upload artifact");
+    }
+    else {
+      console.log("all files uploaded");
+    }
   }
-  else {
-    console.log("all files uploaded");
+  catch(err) {
+    console.log(err.message)
   }
 }
 
