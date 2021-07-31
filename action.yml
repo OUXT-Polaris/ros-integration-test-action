@@ -20,6 +20,10 @@ inputs:
   test_command:
     description: 'command for runnig test case'
     required: true
+  check_result_command:
+    description: 'command for checking result'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -29,3 +33,4 @@ runs:
     - ${{ inputs.rosdistro }}
     - ${{ inputs.repos_url }}
     - ${{ inputs.test_command }}
+    - ${{ inputs.check_result_command }}

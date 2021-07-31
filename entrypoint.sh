@@ -5,6 +5,7 @@ TAG=$2
 ROSDISTRO=$3
 REPOS_URL=$4
 TEST_COMMAND=$5
+CHECK_RESULT_COMMAND=$6
 
 cd /runtime_image
 
@@ -16,6 +17,7 @@ docker build -t runtime_image \
     --build-arg rosdistro="$ROSDISTRO" \
     --build-arg repos_url="$REPOS_URL" \
     --build-arg test_command="$TEST_COMMAND" \
+    --build-arg check_result_command="$CHECK_RESULT_COMMAND" \
     . \
     && docker run runtime_image \
     -v /artifacts /artifacts
