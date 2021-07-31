@@ -7,4 +7,4 @@ const files = fs.readdirSync(rootDirectory);
 const options = {
     continueOnError: true
 }
-artifactClient.uploadArtifact(artifactName, files, rootDirectory, options)
+const uploadResult = await artifactClient.uploadArtifact(artifactName, files, rootDirectory, options)
