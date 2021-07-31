@@ -9,6 +9,14 @@ CHECK_RESULT_COMMAND=$6
 
 cd /runtime_image
 
+echo "source /opt/ros/$ROSDISTRO/setup.bash" >> entrypoint.sh
+echo "source /colcon_ws/install/local_setup.bash" >> entrypoint.sh
+echo $TEST_COMMAND >> entrypoint.sh
+echo $CHECK_RESULT_COMMAND >> entrypoint.sh
+
+echo "Entrypoint of runtime image"
+cat entrypoint.sh
+
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
 docker build -t runtime_image \
@@ -16,8 +24,6 @@ docker build -t runtime_image \
     --build-arg tag="$TAG" \
     --build-arg rosdistro="$ROSDISTRO" \
     --build-arg repos_url="$REPOS_URL" \
-    --build-arg test_command="$TEST_COMMAND" \
-    --build-arg check_result_command="$CHECK_RESULT_COMMAND" \
     . \
     && docker run -v /artifacts:/artifacts runtime_image
 
