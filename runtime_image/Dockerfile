@@ -23,6 +23,8 @@ RUN source /opt/ros/${rosdistro}/setup.bash && colcon build --symlink-install --
 RUN source /opt/ros/${rosdistro}/setup.bash && source /colcon_ws/install/local_setup.bash && ${test_command} >> /artifacts/test_command_output.txt
 RUN source /opt/ros/${rosdistro}/setup.bash && source /colcon_ws/install/local_setup.bash && ${check_result_command} >> /artifacts/check_result_command_output.txt
 
+RUN cat /artifacts/test_command_output.txt
+
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 
