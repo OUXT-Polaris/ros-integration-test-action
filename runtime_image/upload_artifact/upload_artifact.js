@@ -8,9 +8,10 @@ const artifacts = [];
 
 files.forEach(file => {
   artifacts.push(rootDirectory + '/' + file);
+  console.log(rootDirectory + '/' + file);
 });
 
 const options = {
-    continueOnError: true
+  continueOnError: true
 }
 artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)
