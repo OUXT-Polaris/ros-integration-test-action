@@ -21,3 +21,5 @@ docker build -t runtime_image \
     . \
     && docker run runtime_image \
     -v /artifacts /artifacts
+
+cd /nodejs_ws && node upload_artifact.js
