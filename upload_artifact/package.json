@@ -1,0 +1,14 @@
+{
+  "name": "upload_artifact",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "upload": "node upload_artifact.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/artifact": "^0.5.2",
+    "fs": "0.0.1-security"
+  }
+}
