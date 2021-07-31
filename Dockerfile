@@ -7,7 +7,7 @@ RUN mkdir -p /artifacts
 
 COPY runtime_image /runtime_image
 COPY entrypoint.sh /entrypoint.sh
-COPY upload_artifact.js upload_artifact.js
+COPY upload_artifact/ /upload_artifact/
 
 RUN apk add --update --no-cache docker
 RUN ["chmod", "+x", "/entrypoint.sh"]

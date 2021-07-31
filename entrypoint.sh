@@ -22,6 +22,6 @@ docker build -t runtime_image \
     && docker run runtime_image \
     -v /artifacts /artifacts
 
-cd ../
-export NODE_PATH=`npm root -g`
-node upload_artifact.js
+cd ../upload_artifact
+npm install
+npm run upload
