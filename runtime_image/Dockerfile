@@ -5,6 +5,7 @@ FROM ${base_image}:${tag}
 
 ARG rosdistro
 ARG repos_url
+ARG test_command
 
 SHELL ["/bin/bash", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
@@ -17,6 +18,7 @@ RUN wget ${repos_url} -O packages.repos
 RUN vcs import src < packages.repos
 RUN source /opt/ros/${rosdistro}/setup.bash && rosdep install -iry --from-paths src --rosdistro ${rosdistro}
 RUN source /opt/ros/${rosdistro}/setup.bash && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+RUN source /opt/ros/${rosdistro}/setup.bash && source /colcon_ws/install/local_setup.bash && ${test_command}
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh

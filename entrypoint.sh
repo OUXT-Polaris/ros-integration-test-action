@@ -4,6 +4,7 @@ BASE_IMAGE=$1
 TAG=$2
 ROSDISTRO=$3
 REPOS_URL=$4
+TEST_COMMAND=$5
 
 cd /runtime_image
 
@@ -14,5 +15,6 @@ docker build -t runtime_image \
     --build-arg tag="$TAG" \
     --build-arg rosdistro="$ROSDISTRO" \
     --build-arg repos_url="$REPOS_URL" \
+    --build-arg test_command="$TEST_COMMAND" \
     . \
     && docker run runtime_image

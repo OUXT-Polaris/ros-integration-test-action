@@ -17,6 +17,9 @@ inputs:
   repos_url:
     description: 'url of repos file you want to use'
     required: true
+  test_command:
+    description: 'command for runnig test case'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -25,3 +28,4 @@ runs:
     - ${{ inputs.tag }}
     - ${{ inputs.rosdistro }}
     - ${{ inputs.repos_url }}
+    - ${{ inputs.test_command }}
