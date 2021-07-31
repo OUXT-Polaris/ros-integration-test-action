@@ -35,43 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDirectoryList = exports.getFileList = void 0;
-var fs = require('fs');
 var artifact = require('@actions/artifact');
 var artifactClient = artifact.create();
 var artifactName = 'scenario_test_artifacts';
+var globPattern = '/artifacts/*';
 var rootDirectory = '/artifacts';
-var fs_1 = require("fs");
-function getFileList(dirPath) {
-    var dirList = new Array();
-    dirList = fs_1.readdirSync(dirPath, {
-        withFileTypes: true,
-    }).filter(function (dirent) { return dirent.isFile(); })
-        .map(function (dirent) { return dirent.name; });
-    return dirList;
-}
-exports.getFileList = getFileList;
-function getDirectoryList(dirPath) {
-    var dirList = new Array();
-    dirList = fs_1.readdirSync(dirPath, {
-        withFileTypes: true,
-    }).filter(function (dirent) { return dirent.isDirectory(); })
-        .map(function (dirent) { return dirent.name; });
-    return dirList;
-}
-exports.getDirectoryList = getDirectoryList;
-console.log("Searching Artifacts");
-var dirs = getDirectoryList(rootDirectory);
-var artifacts = getFileList(rootDirectory);
-dirs.forEach(function (directory) {
-    console.log(directory);
-    var files = getFileList(directory);
-    files.forEach(function (file) {
-        artifacts.push(file);
+var path = require('path');
+var glob = require('glob');
+function find(pattern) {
+    glob(pattern, function (err, files) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(pattern);
+        console.log(files);
     });
-});
-artifacts.filter(function (artifact) { return console.log(artifact); });
+}
+var artifacts = find(globPattern);
+console.log(artifacts);
 var options = {
     continueOnError: false
 };
