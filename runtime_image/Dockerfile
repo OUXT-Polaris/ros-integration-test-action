@@ -2,9 +2,12 @@
 ARG base_image
 ARG tag
 ARG rosdistro
+ARG repos_file
 FROM ${base_image}:${tag}
 
 RUN mkdir -p /colcon_ws/src
+WORKDIR /colcon_ws
+COPY ${repos_file} /colcon_ws
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh

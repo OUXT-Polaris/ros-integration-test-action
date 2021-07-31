@@ -1,0 +1,5 @@
+repositories:
+  data_buffer:
+    url: https://github.com/OUXT-Polaris/data_buffer.git
+    type: git
+    version: ros2
