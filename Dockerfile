@@ -1,5 +1,5 @@
 FROM alpine:latest
-RUN apk add --no-cache nodejs
+RUN apk add --no-cache nodejs npm
 WORKDIR /nodejs_ws
 RUN npm install @actions/github
 
