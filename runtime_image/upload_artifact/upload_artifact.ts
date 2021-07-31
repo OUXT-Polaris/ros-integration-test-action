@@ -25,17 +25,20 @@ export function getDirectoryList(dirPath:string):string[] {
   return dirList;
 }
 
+console.log("Searching Artifacts")
+
 const dirs = getDirectoryList(rootDirectory);
-const artifacts = Array<String>();
+const artifacts = getFileList(rootDirectory);
 dirs.forEach(directory => {
+  console.log(directory)
   const files = getFileList(directory);
   files.forEach(file => {
     artifacts.push(file);
-    console.log(file);
   });
 });
 
-/*
+artifacts.filter(artifact => console.log(artifact));
+
 const options = {
   continueOnError: false
 }
@@ -44,5 +47,4 @@ async function run(): Promise<void> {
   const uploadResult = await artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)
 }
 
-run()
-*/
+run();
