@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+RUN mkdir -p /artifacts
+
 COPY runtime_image /runtime_image
 COPY entrypoint.sh /entrypoint.sh
 

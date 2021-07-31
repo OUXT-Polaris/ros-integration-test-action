@@ -9,7 +9,7 @@ jobs:
     steps:
     # To use this repository's private action, you must check out the repository
     - uses: actions/checkout@v2
-    - name: Run ROS2 scenario test action
+    - name: Run ros scenario test action
       uses: ./
       with:
         base-image: ros
