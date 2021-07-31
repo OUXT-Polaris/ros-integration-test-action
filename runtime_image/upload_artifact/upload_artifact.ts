@@ -8,12 +8,11 @@ const path = require('path');
 const glob = require('glob');
 
 function find(pattern : String) {
-	glob(pattern, function (err : Error, files : String) {
+	return glob(pattern, function (err : Error, files : String) {
 		if(err) {
 			console.log(err);
 		}
-		console.log(pattern);
-		console.log(files);
+    return files;
 	});
 }
 

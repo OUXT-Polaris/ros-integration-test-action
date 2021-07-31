@@ -43,12 +43,11 @@ var rootDirectory = '/artifacts';
 var path = require('path');
 var glob = require('glob');
 function find(pattern) {
-    glob(pattern, function (err, files) {
+    return glob(pattern, function (err, files) {
         if (err) {
             console.log(err);
         }
-        console.log(pattern);
-        console.log(files);
+        return files;
     });
 }
 var artifacts = find(globPattern);
