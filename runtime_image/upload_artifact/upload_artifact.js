@@ -35,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var artifact = require('@actions/artifact');
 var artifactClient = artifact.create();
 var artifactName = 'scenario_test_artifacts';
@@ -43,12 +44,7 @@ var rootDirectory = '/artifacts';
 var path = require('path');
 var glob = require('glob');
 function find(pattern) {
-    return glob(pattern, function (err, files) {
-        if (err) {
-            console.log(err);
-        }
-        return files;
-    });
+    return glob.sync(pattern);
 }
 var artifacts = find(globPattern);
 console.log(artifacts);

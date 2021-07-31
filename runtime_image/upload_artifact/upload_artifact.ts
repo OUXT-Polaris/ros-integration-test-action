@@ -1,3 +1,5 @@
+import { file } from "tmp";
+
 const artifact = require('@actions/artifact');
 const artifactClient = artifact.create()
 const artifactName = 'scenario_test_artifacts';
@@ -8,12 +10,7 @@ const path = require('path');
 const glob = require('glob');
 
 function find(pattern : String) {
-	return glob(pattern, function (err : Error, files : String) {
-		if(err) {
-			console.log(err);
-		}
-    return files;
-	});
+  return glob.sync(pattern);
 }
 
 const artifacts = find(globPattern);
