@@ -10,9 +10,9 @@ CHECK_RESULT_COMMAND=$6
 cd /runtime_image
 
 touch entrypoint.sh
-echo "#!/bin/bash -l" >> entrypoint.sh
-echo "source /opt/ros/$ROSDISTRO/setup.bash" >> entrypoint.sh
-echo "source /colcon_ws/install/local_setup.bash" >> entrypoint.sh
+echo "#!/bin/sh -l" >> entrypoint.sh
+echo "sh /opt/ros/$ROSDISTRO/setup.sh" >> entrypoint.sh
+echo "sh /colcon_ws/install/local_setup.sh" >> entrypoint.sh
 echo $TEST_COMMAND >> entrypoint.sh
 echo $CHECK_RESULT_COMMAND >> entrypoint.sh
 
