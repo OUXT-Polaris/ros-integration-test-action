@@ -14,4 +14,4 @@ jobs:
       with:
         base-image: ros
         tag: foxy
-        repos_file: test.repos
+        repos_url: https://github.com/OUXT-Polaris/ros-scenario-test-action/blob/master/.github/workflows/test.yaml

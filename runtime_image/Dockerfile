@@ -2,15 +2,15 @@
 ARG base_image
 ARG tag
 ARG rosdistro
-ARG repos_file
+ARG repos_url
 FROM ${base_image}:${tag}
 
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
-COPY ${repos_file} /colcon_ws
+RUN wget ${repos_url}
 RUN ls /colcon_ws
-RUN cat /colcon_ws/${repos_file}
-RUN vcs import src < ${repos_file}
+RUN cat /colcon_ws/${repos_url}
+RUN vcs import src < ${repos_url}
 RUN source /opt/ros/${rosdistro}/setup.sh && rosdep install -iry --from-paths src --rosdistro ${rosdistro}
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
