@@ -8,6 +8,8 @@ FROM ${base_image}:${tag}
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
 COPY ${repos_file} /colcon_ws
+RUN ls /colcon_ws
+RUN cat /colcon_ws/${repos_file}
 RUN vcs import src < ${repos_file}
 RUN source /opt/ros/${rosdistro}/setup.sh && rosdep install -iry --from-paths src --rosdistro ${rosdistro}
 
