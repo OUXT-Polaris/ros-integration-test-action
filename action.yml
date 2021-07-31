@@ -14,10 +14,6 @@ inputs:
     description: 'name of rosdistro'
     required: false
     default: 'foxy'
-  workspace:
-    description: 'full path to the ros workspace'
-    required: false
-    default: '/colcon_ws'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -25,4 +21,3 @@ runs:
     - ${{ inputs.base-image }}
     - ${{ inputs.tag }}
     - ${{ inputs.rosdistro }}
-    - ${{ inputs.workspace }}

@@ -3,7 +3,6 @@
 BASE_IMAGE=$1
 TAG=$2
 ROS_DISTRO=$3
-WORKSPACE=$4
 
 cd /runtime_image
 
@@ -13,6 +12,5 @@ docker build -t runtime_image \
     --build-arg base_image="$BASE_IMAGE" \
     --build-arg tag="$TAG" \
     --build-arg ros_distro="$ROS_DISTRO" \
-    --build-arg workspace="$WORKSPACE" \
     . \
     && docker run runtime_image
