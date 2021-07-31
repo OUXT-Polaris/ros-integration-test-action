@@ -1,13 +1,13 @@
-FROM node:alpine
+FROM alpine:latest
+RUN apk add --no-cache nodejs
+WORKDIR /nodejs_ws
+RUN npm install @actions/github
 
+WORKDIR /
 RUN mkdir -p /artifacts
-RUN mkdir -p /nodejs_ws
 
 COPY runtime_image /runtime_image
 COPY entrypoint.sh /entrypoint.sh
-
-WORKDIR /nodejs_ws
-RUN npm install @actions/github
 
 RUN apk add --update --no-cache docker
 RUN ["chmod", "+x", "/entrypoint.sh"]
