@@ -8,8 +8,8 @@ FROM ${base_image}:${tag}
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
 COPY ${repos_file} /colcon_ws
-RUN vcs import src < packages.repos
-RUN source /opt/ros/foxy/setup.sh && rosdep install -iry --from-paths src --rosdistro ${rosdistro}
+RUN vcs import src < ${repos_file}
+RUN source /opt/ros/${rosdistro}/setup.sh && rosdep install -iry --from-paths src --rosdistro ${rosdistro}
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
