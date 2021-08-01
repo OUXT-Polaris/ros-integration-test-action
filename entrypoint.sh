@@ -13,6 +13,8 @@ echo "=== repos ==="
 
 cd /runtime_image
 
+cp /packages.repos .
+
 touch entrypoint.sh
 echo "#!/bin/sh -l" >> entrypoint.sh
 echo "ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
