@@ -7,10 +7,6 @@ TEST_COMMAND=$4
 CHECK_RESULT_COMMAND=$5
 ARTIFACTS_NAME=$6
 
-echo "=== repos ==="
-cat /packages.repos
-echo "=== repos ==="
-
 cd /runtime_image
 
 cp /packages.repos .
@@ -32,9 +28,9 @@ echo "npm install" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
 touch .netrc
-echo "machine github.com"
-echo "login $GITHUB_CLONE_UERNAME"
-echo "password $GITHUB_CLONE_TOKEN"
+echo "machine github.com" >> .netrc
+echo "login $GITHUB_CLONE_UERNAME" >> .netrc
+echo "password $GITHUB_CLONE_TOKEN" >> .netrc
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
