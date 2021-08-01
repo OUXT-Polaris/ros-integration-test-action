@@ -56,7 +56,7 @@ jobs:
       run: cp .github/workflows/test.repos packages.repos
     # Read package.repos and run integration test.
     - name: Run ros integration test action
-      uses: at-wat/catkin-release-action@0.0.2
+      uses: OUXT-Polaris/ros-integration-test-action@0.0.4
       with:
         base_image: ros
         tag: ${{ matrix.rosdistro }}
