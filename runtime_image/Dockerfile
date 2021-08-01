@@ -4,13 +4,13 @@ ARG tag
 FROM ${base_image}:${tag}
 
 ARG rosdistro
-ARG repos_file
-ARG test_command
-ARG check_result_command
 
 SHELL ["/bin/bash", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS=yes
+
+ARG github_clone_token
+RUN git config --global url."https://${github_clone_token}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
 RUN mkdir -p /artifacts
 RUN mkdir -p /colcon_ws/src
@@ -20,7 +20,6 @@ RUN npm install -g n
 RUN n v14.15.0
 RUN apt-get purge -y nodejs npm
 COPY packages.repos /packages.repos
-COPY .netrc ~/.netrc
 RUN vcs import src < /packages.repos
 RUN source /opt/ros/${rosdistro}/setup.bash && rosdep install -iry --from-paths src --rosdistro ${rosdistro}
 RUN source /opt/ros/${rosdistro}/setup.bash && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
