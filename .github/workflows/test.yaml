@@ -21,7 +21,7 @@ jobs:
     # To use this repository's private action, you must check out the repository
     - uses: actions/checkout@v2
     - name: Copy and rename repos file
-      run: cp cat .github/workflows/test.repos packages.repos
+      run: cp .github/workflows/test.repos packages.repos
     - name: Run ros integration test action
       uses: ./
       with:
