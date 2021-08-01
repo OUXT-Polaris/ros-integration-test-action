@@ -28,8 +28,8 @@ echo "npm install" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
 touch .netrc
-echo "machine github.com" >> .netrc
-echo "login $GITHUB_CLONE_UERNAME" >> .netrc
+echo "machine https://github.com" >> .netrc
+echo "login $GITHUB_CLONE_USERNAME" >> .netrc
 echo "password $GITHUB_CLONE_TOKEN" >> .netrc
 
 # here we can make the construction of the image as customizable as we need
