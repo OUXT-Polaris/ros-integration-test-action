@@ -28,7 +28,7 @@ echo "npm install" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
 touch .netrc
-echo "machine https://github.com" >> .netrc
+echo "machine github.com" >> .netrc
 echo "login $GITHUB_CLONE_USERNAME" >> .netrc
 echo "password $GITHUB_CLONE_TOKEN" >> .netrc
 
