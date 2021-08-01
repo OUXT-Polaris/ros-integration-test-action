@@ -17,11 +17,56 @@ If you want to run build test for ROS / ROS2 package, we recommend to use [this 
 
 ## How it works?
 1. Building runtime container in [alpine linux docker continer.](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/Dockerfile)
-2. [Generate entrypoint.sh](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/9a03c72fb53a3bc18d815470dfc78bdfbae32d09/entrypoint.sh#L12) for runtime container.
-3. Copy reposfile into runtime docker, and build your ROS2 package inside [runtime container.](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/runtime_image/Dockerfile)
+2. Generate entrypoint.sh script for runtime container.
+3. Copy packages.repos file into runtime docker, and build your ROS2 package inside runtime container.
 4. Execute test_command and run integration test.
 5. Execute check_result_command and check integration result test.
 6. Upload files under "/artifacts" directory inside runtime container as artifact of workflow run.
 
 ## Tips
 If you want to run integration test quickly, build your packages under "/colcon_ws" directory and push that image into docker registory. (dockerhub, AWS ECR etc..)
+
+## How to use?
+
+See also, [example workflow](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/.github/workflows/test.yaml) of this repository.
+
+```yaml
+name: test
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * *
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: A test job for ros integration test action
+    strategy:
+      fail-fast: false
+      matrix:
+        rosdistro: [foxy, galactic]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Copy and rename repos file
+      run: cp .github/workflows/test.repos packages.repos
+    # Read package.repos and run integration test.
+    - name: Run ros integration test action
+      uses: at-wat/catkin-release-action@0.0.2
+      with:
+        base_image: ros
+        tag: ${{ matrix.rosdistro }}
+        rosdistro: ${{ matrix.rosdistro }}
+        repos_file: .github/workflows/test.repos
+        test_command: ls /colcon_ws/src
+        check_result_command: ls /colcon_ws/src
+        artifact_name: artifacts_${{ matrix.rosdistro }}
+      env:
+        ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        ACTIONS_RUNTIME_URL: ${{ env.ACTIONS_RUNTIME_URL }}
+        GITHUB_RUN_ID: ${env.GITHUB_RUN_ID}
+```
