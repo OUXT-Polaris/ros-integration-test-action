@@ -7,7 +7,10 @@ TEST_COMMAND=$4
 CHECK_RESULT_COMMAND=$5
 ARTIFACTS_NAME=$6
 
+echo "=== repos ==="
 cat /packages.repos
+echo "=== repos ==="
+
 cd /runtime_image
 
 touch entrypoint.sh
