@@ -26,7 +26,7 @@ jobs:
         base_image: ros
         tag: ${{ matrix.rosdistro }}
         rosdistro: ${{ matrix.rosdistro }}
-        repos_url: https://raw.githubusercontent.com/OUXT-Polaris/ros-integration-test-action/master/.github/workflows/test.repos
+        repos_file: .github/workflows/test.repos
         test_command: ls /colcon_ws/src
         check_result_command: ls /colcon_ws/src
         artifact_name: artifacts_${{ matrix.rosdistro }}

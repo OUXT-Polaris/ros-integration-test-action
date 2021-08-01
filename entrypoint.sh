@@ -3,7 +3,7 @@
 BASE_IMAGE=$1
 TAG=$2
 ROSDISTRO=$3
-REPOS_URL=$4
+REPOS_FILE=$4
 TEST_COMMAND=$5
 CHECK_RESULT_COMMAND=$6
 ARTIFACTS_NAME=$7
@@ -32,6 +32,6 @@ docker build -t runtime_image \
     --build-arg base_image="$BASE_IMAGE" \
     --build-arg tag="$TAG" \
     --build-arg rosdistro="$ROSDISTRO" \
-    --build-arg repos_url="$REPOS_URL" \
+    --build-arg repos_file="$REPOS_FILE" \
     . \
     && docker run runtime_image

@@ -11,7 +11,7 @@ If you want to run build test for ROS / ROS2 package, we recommend to use [this 
 | base_image           | false    | ros       | name of base image                          |
 | tag                  | false    | foxy      | name of docker image tag                    |
 | rosdistro            | false    | foxy      | name of ros distribution                    |
-| repos_url            | true     |           | wget url of repos file you want to use      |
+| repos_file           | true     |           | filepath of repos file                      |
 | test_command         | true     |           | shell command for runnig test case          |
 | check_result_command | true     |           | shell command for checkin test case results |
 | artifact_name        | false    | artifacts | name of output artifact                     |
@@ -19,7 +19,7 @@ If you want to run build test for ROS / ROS2 package, we recommend to use [this 
 ## How it works?
 1. Building runtime container in [alpine linux docker continer.](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/Dockerfile)
 2. [Generate entrypoint.sh](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/9a03c72fb53a3bc18d815470dfc78bdfbae32d09/entrypoint.sh#L12) for runtime container.
-3. Wget repos file from repos_url, and build your ROS2 package inside [runtime container.](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/runtime_image/Dockerfile)
+3. Copy reposfile into runtime docker, and build your ROS2 package inside [runtime container.](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/runtime_image/Dockerfile)
 4. Execute test_command and run integration test.
 5. Execute check_result_command and check integration result test.
 6. Upload files under "/artifacts" directory inside runtime container as artifact of workflow run.
