@@ -2,7 +2,7 @@ import { file } from "tmp";
 
 const artifact = require('@actions/artifact');
 const artifactClient = artifact.create()
-const artifactName = 'scenario_test_artifacts';
+const artifactName = 'integration_test_artifacts';
 const globPattern = '/artifacts/*'
 const rootDirectory = '/artifacts';
 

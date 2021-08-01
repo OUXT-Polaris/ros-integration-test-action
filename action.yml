@@ -1,6 +1,6 @@
 # action.yml
-name: 'Scenario test action'
-description: 'scenario test action for ROS packages'
+name: 'ROS integration test action'
+description: 'integration test action for ROS packages'
 inputs:
   base_image:
     description: 'name of base image'

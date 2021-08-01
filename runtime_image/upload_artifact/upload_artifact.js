@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var artifact = require('@actions/artifact');
 var artifactClient = artifact.create();
-var artifactName = 'scenario_test_artifacts';
+var artifactName = 'integration_test_artifacts';
 var globPattern = '/artifacts/*';
 var rootDirectory = '/artifacts';
 var path = require('path');
