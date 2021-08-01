@@ -11,7 +11,6 @@ If you want to run build test for ROS / ROS2 package, we recommend to use [this 
 | base_image           | false    | ros       | name of base image                          |
 | tag                  | false    | foxy      | name of docker image tag                    |
 | rosdistro            | false    | foxy      | name of ros distribution                    |
-| repos_file           | true     |           | filepath of repos file                      |
 | test_command         | true     |           | shell command for runnig test case          |
 | check_result_command | true     |           | shell command for checkin test case results |
 | artifact_name        | false    | artifacts | name of output artifact                     |
