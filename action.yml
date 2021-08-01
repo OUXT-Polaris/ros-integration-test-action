@@ -17,9 +17,6 @@ inputs:
     description: 'name of ros distribution'
     required: false
     default: 'foxy'
-  repos_file:
-    description: 'filepath of repos file'
-    required: true
   test_command:
     description: 'shell command for runnig test case'
     required: true
@@ -38,7 +35,6 @@ runs:
     - ${{ inputs.base_image }}
     - ${{ inputs.tag }}
     - ${{ inputs.rosdistro }}
-    - ${{ inputs.repos_file }}
     - ${{ inputs.test_command }}
     - ${{ inputs.check_result_command }}
     - ${{ inputs.artifact_name }}
