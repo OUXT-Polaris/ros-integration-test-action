@@ -2,7 +2,7 @@
 
 Github actions for running integration test for ROS packages.
 Currenty, we are supporting foxy and galactic.
-If you want to run build test for ROS / ROS2 package, we are recommend to use [this action.](https://github.com/ros-tooling/action-ros-ci)
+If you want to run build test for ROS / ROS2 package, we recommend to use [this action.](https://github.com/ros-tooling/action-ros-ci)
 
 ## paramters
 
