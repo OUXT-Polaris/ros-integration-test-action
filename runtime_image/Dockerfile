@@ -4,13 +4,13 @@ ARG tag
 FROM ${base_image}:${tag}
 
 ARG rosdistro
-ARG repos_file
-ARG test_command
-ARG check_result_command
 
 SHELL ["/bin/bash", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NOWARNINGS=yes
+
+ARG github_clone_token
+RUN git config --global url."https://${github_clone_token}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
 RUN mkdir -p /artifacts
 RUN mkdir -p /colcon_ws/src
