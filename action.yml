@@ -11,7 +11,7 @@ inputs:
     required: false
     default: 'foxy'
   rosdistro:
-    description: 'name of rosdistro'
+    description: 'name of ros distribution'
     required: false
     default: 'foxy'
   repos_url:
@@ -24,6 +24,10 @@ inputs:
     description: 'shell command for checking result'
     required: true
     default: ''
+  artifact_name:
+    description: 'name of output artifact'
+    required: false
+    default: 'artifacts'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -34,3 +38,4 @@ runs:
     - ${{ inputs.repos_url }}
     - ${{ inputs.test_command }}
     - ${{ inputs.check_result_command }}
+    - ${{ inputs.artifact_name }}

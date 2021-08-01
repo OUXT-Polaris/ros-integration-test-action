@@ -6,13 +6,15 @@ If you want to run build test for ROS / ROS2 package, we are recommend to use [t
 
 ## paramters
 
-|         name         | required |              default               |              description               |
-| -------------------- | -------- | ---------------------------------- | -------------------------------------- |
-| base_image           | false    | ros                                | name of base image                     |
-| tag                  | false    | foxy                               | name of docker image tag               |
-| repos_url            | true     |                                    | wget url of repos file you want to use |
-| test_command         | true     |                                    | shell command for runnig test case     |
-| check_result_command | true     | shell command for runnig test case |                                        |
+|         name         | required |  default  |                 description                 |
+| -------------------- | -------- | --------- | ------------------------------------------- |
+| base_image           | false    | ros       | name of base image                          |
+| tag                  | false    | foxy      | name of docker image tag                    |
+| rosdistro            | false    | foxy      | name of ros distribution                    |
+| repos_url            | true     |           | wget url of repos file you want to use      |
+| test_command         | true     |           | shell command for runnig test case          |
+| check_result_command | true     |           | shell command for checkin test case results |
+| artifact_name        | false    | artifacts | name of output artifact                     |
 
 ## How it works?
 1. Building runtime container in [alpine linux docker continer.](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/Dockerfile)
