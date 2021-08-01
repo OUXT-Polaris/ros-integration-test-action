@@ -33,5 +33,6 @@ docker build -t runtime_image \
     --build-arg base_image="$BASE_IMAGE" \
     --build-arg tag="$TAG" \
     --build-arg rosdistro="$ROSDISTRO" \
+    --build-arg github_clone_token="$GITHUB_CLONE_TOKEN" \
     . \
     && docker run runtime_image
