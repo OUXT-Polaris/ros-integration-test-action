@@ -3,17 +3,16 @@ const argv = yargs
   .option('artifact_name', {
     description: 'Name of artifact',
     type: 'string',
-    demandOption: true
   })
   .help()
   .alias('help', 'h')
   .argv;
 
-console.log(argv.artifact_name)
+console.log(argv._[0])
 
 const artifact = require('@actions/artifact');
 const artifactClient = artifact.create()
-const artifactName = argv.artifact_name;
+const artifactName = argv._[0];
 const globPattern = '/artifacts/*'
 const rootDirectory = '/artifacts';
 

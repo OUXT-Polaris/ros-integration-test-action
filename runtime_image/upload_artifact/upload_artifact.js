@@ -40,15 +40,14 @@ var argv = yargs
     .option('artifact_name', {
     description: 'Name of artifact',
     type: 'string',
-    demandOption: true
 })
     .help()
     .alias('help', 'h')
     .argv;
-console.log(argv.artifact_name);
+console.log(argv._[0]);
 var artifact = require('@actions/artifact');
 var artifactClient = artifact.create();
-var artifactName = argv.artifact_name;
+var artifactName = argv._[0];
 var globPattern = '/artifacts/*';
 var rootDirectory = '/artifacts';
 var path = require('path');

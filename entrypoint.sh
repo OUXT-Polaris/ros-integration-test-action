@@ -24,7 +24,7 @@ echo "$TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
 echo "$CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
 echo "cd /upload_artifact" >> entrypoint.sh
 echo "npm install" >> entrypoint.sh
-echo "npm run upload --artifact_name $ARTIFACTS_NAME" >> entrypoint.sh
+echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
