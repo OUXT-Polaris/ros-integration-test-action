@@ -1,6 +1,9 @@
 # action.yml
 name: 'ROS integration test action'
 description: 'integration test action for ROS packages'
+branding:
+  icon: "user-check"
+  color: "blue"
 inputs:
   base_image:
     description: 'name of base image'
