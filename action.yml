@@ -2,12 +2,12 @@
 name: 'Scenario test action'
 description: 'scenario test action for ROS packages'
 inputs:
-  base-image:
+  base_image:
     description: 'name of base image'
     required: false
     default: ros
   tag:
-    description: 'name of tag'
+    description: 'name of docker image tag'
     required: false
     default: 'foxy'
   rosdistro:
@@ -15,20 +15,20 @@ inputs:
     required: false
     default: 'foxy'
   repos_url:
-    description: 'url of repos file you want to use'
+    description: 'wget url of repos file you want to use'
     required: true
   test_command:
-    description: 'command for runnig test case'
+    description: 'shell command for runnig test case'
     required: true
   check_result_command:
-    description: 'command for checking result'
-    required: false
+    description: 'shell command for checking result'
+    required: true
     default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.base-image }}
+    - ${{ inputs.base_image }}
     - ${{ inputs.tag }}
     - ${{ inputs.rosdistro }}
     - ${{ inputs.repos_url }}
