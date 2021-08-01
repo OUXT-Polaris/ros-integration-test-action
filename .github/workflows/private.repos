@@ -1,5 +1,5 @@
 repositories:
   demo_private_repo:
-    url: https://github.com/OUXT-Polaris/demo_private_repo.git
+    url: git@github.com:OUXT-Polaris/demo_private_repo.git
     type: git
     version: master
