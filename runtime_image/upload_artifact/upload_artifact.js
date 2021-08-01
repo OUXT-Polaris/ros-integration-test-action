@@ -35,10 +35,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+var yargs = require('yargs');
+var argv = yargs
+    .option('artifact_name', {
+    description: 'Name of artifact',
+    type: 'string',
+    demandOption: true
+})
+    .help()
+    .alias('help', 'h')
+    .argv;
+console.log(argv.artifact_name);
 var artifact = require('@actions/artifact');
 var artifactClient = artifact.create();
-var artifactName = 'integration_test_artifacts';
+var artifactName = argv.artifact_name;
 var globPattern = '/artifacts/*';
 var rootDirectory = '/artifacts';
 var path = require('path');

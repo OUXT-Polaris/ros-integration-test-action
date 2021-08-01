@@ -10,7 +10,8 @@
   "dependencies": {
     "@actions/artifact": "^0.5.2",
     "fs": "0.0.1-security",
-    "glob": "^7.1.7"
+    "glob": "^7.1.7",
+    "yargs": "^17.0.1"
   },
   "devDependencies": {
     "@types/node": "^16.4.8",

@@ -1,6 +1,13 @@
 name: test
 
-on: [push]
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * *
+  pull_request:
+  push:
+    branches:
+      - master
 
 jobs:
   test:

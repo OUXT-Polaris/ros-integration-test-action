@@ -1,8 +1,19 @@
-import { file } from "tmp";
+const yargs = require('yargs');
+const argv = yargs
+  .option('artifact_name', {
+    description: 'Name of artifact',
+    type: 'string',
+    demandOption: true
+  })
+  .help()
+  .alias('help', 'h')
+  .argv;
+
+console.log(argv.artifact_name)
 
 const artifact = require('@actions/artifact');
 const artifactClient = artifact.create()
-const artifactName = 'integration_test_artifacts';
+const artifactName = argv.artifact_name;
 const globPattern = '/artifacts/*'
 const rootDirectory = '/artifacts';
 
