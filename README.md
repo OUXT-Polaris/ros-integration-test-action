@@ -61,7 +61,6 @@ jobs:
         base_image: ros
         tag: ${{ matrix.rosdistro }}
         rosdistro: ${{ matrix.rosdistro }}
-        repos_file: .github/workflows/test.repos
         test_command: ls /colcon_ws/src
         check_result_command: ls /colcon_ws/src
         artifact_name: artifacts_${{ matrix.rosdistro }}

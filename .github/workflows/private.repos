@@ -1,0 +1,5 @@
+repositories:
+  data_buffer:
+    url: https://github.com/OUXT-Polaris/demo_private_repo.git
+    type: git
+    version: master

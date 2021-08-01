@@ -17,18 +17,18 @@ jobs:
       fail-fast: false
       matrix:
         rosdistro: [foxy, galactic]
+        repository_type: [public, private]
     steps:
     # To use this repository's private action, you must check out the repository
     - uses: actions/checkout@v2
     - name: Copy and rename repos file
-      run: cp .github/workflows/test.repos packages.repos
+      run: cp .github/workflows/${{ matrix.repository_type }}.repos packages.repos
     - name: Run ros integration test action
       uses: ./
       with:
         base_image: ros
         tag: ${{ matrix.rosdistro }}
         rosdistro: ${{ matrix.rosdistro }}
-        repos_file: .github/workflows/test.repos
         test_command: ls /colcon_ws/src
         check_result_command: ls /colcon_ws/src
         artifact_name: artifacts_${{ matrix.rosdistro }}
