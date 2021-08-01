@@ -51,7 +51,7 @@ jobs:
       matrix:
         rosdistro: [foxy, galactic]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v0.0.2
     - name: Copy and rename repos file
       run: cp .github/workflows/test.repos packages.repos
     # Read package.repos and run integration test.
@@ -69,4 +69,6 @@ jobs:
         ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         ACTIONS_RUNTIME_URL: ${{ env.ACTIONS_RUNTIME_URL }}
         GITHUB_RUN_ID: ${env.GITHUB_RUN_ID}
+        GITHUB_CLONE_TOKEN: ${{ secrets.WAMV_TAN_BOT_SECRET }} # access token for cloning your package in private repository.
+        GITHUB_CLONE_UERNAME: wam-v-tan
 ```

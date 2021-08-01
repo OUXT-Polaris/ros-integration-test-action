@@ -31,6 +31,11 @@ echo "cd /upload_artifact" >> entrypoint.sh
 echo "npm install" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
+touch .netrc
+echo "machine github.com"
+echo "login $GITHUB_CLONE_UERNAME"
+echo "password $GITHUB_CLONE_TOKEN"
+
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
 docker build -t runtime_image \
