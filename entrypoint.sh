@@ -3,12 +3,17 @@
 BASE_IMAGE=$1
 TAG=$2
 ROSDISTRO=$3
-REPOS_URL=$4
-TEST_COMMAND=$5
-CHECK_RESULT_COMMAND=$6
-ARTIFACTS_NAME=$7
+TEST_COMMAND=$4
+CHECK_RESULT_COMMAND=$5
+ARTIFACTS_NAME=$6
+
+echo "=== repos ==="
+cat /packages.repos
+echo "=== repos ==="
 
 cd /runtime_image
+
+cp /packages.repos .
 
 touch entrypoint.sh
 echo "#!/bin/sh -l" >> entrypoint.sh
@@ -32,6 +37,5 @@ docker build -t runtime_image \
     --build-arg base_image="$BASE_IMAGE" \
     --build-arg tag="$TAG" \
     --build-arg rosdistro="$ROSDISTRO" \
-    --build-arg repos_url="$REPOS_URL" \
     . \
     && docker run runtime_image
