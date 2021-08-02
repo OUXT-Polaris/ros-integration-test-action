@@ -12,7 +12,7 @@ REPOS_FILENAME=$8
 cd /runtime_image
 
 touch entrypoint.sh
-echo "#!/bin/sh -l" >> entrypoint.sh
+echo "#!/bin/bash -l" >> entrypoint.sh
 echo "ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
 echo "export ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
 echo "ACTIONS_RUNTIME_URL=$ACTIONS_RUNTIME_URL" >> entrypoint.sh
@@ -26,10 +26,10 @@ echo "cd /" >> entrypoint.sh
 echo "find $REPOS_FILENAME" >> entrypoint.sh
 echo "cd /colcon_ws" >> entrypoint.sh
 echo "vcs import src < /$REPOS_FILENAME" >> entrypoint.sh
-echo "sh /opt/ros/$ROSDISTRO/setup.sh && rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
-echo "sh /opt/ros/$ROSDISTRO/setup.sh && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release" >> entrypoint.sh
-echo "sh /opt/ros/$ROSDISTRO/setup.sh && sh /colcon_ws/install/local_setup.sh && $TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
-echo "sh /opt/ros/$ROSDISTRO/setup.sh && sh /colcon_ws/install/local_setup.sh && $CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
+echo "source /opt/ros/$ROSDISTRO/setup.bash && rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
+echo "source /opt/ros/$ROSDISTRO/setup.bash && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release" >> entrypoint.sh
+echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
+echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
 echo "cd /artifact_controller" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
