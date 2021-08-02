@@ -11,8 +11,6 @@ REPOS_FILENAME=$8
 
 cd /runtime_image
 
-cp /packages.repos .
-
 touch entrypoint.sh
 echo "#!/bin/sh -l" >> entrypoint.sh
 echo "ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
@@ -27,8 +25,10 @@ echo "$CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint
 echo "cd /artifact_controller" >> entrypoint.sh
 echo "npm install" >> entrypoint.sh
 echo "npm run download $REPOS_ARTIFACTS_NAME" >> entrypoint.sh
-echo "vcs import src < /$REPOS_FILENAME" >> entrypoint.sh
+echo "cd /" >> entrypoint.sh
+echo "find $REPOS_FILENAME" >> entrypoint.sh
 echo "cd /colcon_ws" >> entrypoint.sh
+echo "vcs import src < /$REPOS_FILENAME" >> entrypoint.sh
 echo "rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
 echo "colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release" >> entrypoint.sh
 echo "sh /colcon_ws/install/local_setup.sh" >> entrypoint.sh
