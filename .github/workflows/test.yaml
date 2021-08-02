@@ -35,6 +35,7 @@ jobs:
         check_result_command: ls /colcon_ws/src
         artifact_name: artifacts_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
         repos_artifact_name: repos_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
+        repos_filename: ${{ matrix.repository_type }}.repos
       env:
         ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         ACTIONS_RUNTIME_URL: ${{ env.ACTIONS_RUNTIME_URL }}

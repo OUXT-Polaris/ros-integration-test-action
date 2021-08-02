@@ -15,6 +15,7 @@ If you want to run build test for ROS / ROS2 package, we recommend to use [this 
 | check_result_command | true     |           | shell command for checkin test case results                |
 | artifact_name        | false    | artifacts | name of output artifact                                    |
 | repos_artifact_name  | true     |           | artifact name of repos file you want to use in this action |
+| repos_filename       | true     |           | name of repos file you want to use in this action          |
 
 ## How it works?
 1. Building runtime container in [alpine linux docker continer.](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/Dockerfile)
