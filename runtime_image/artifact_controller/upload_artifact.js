@@ -87,6 +87,6 @@ function upload_artifact() {
             });
         });
     }
-    //run();
+    run();
 }
 upload_artifact();

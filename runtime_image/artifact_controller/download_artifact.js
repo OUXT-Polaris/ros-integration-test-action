@@ -55,7 +55,7 @@ function download_artifact() {
     };
     function run() {
         return __awaiter(this, void 0, void 0, function () {
-            var downloadResponse, err_1;
+            var downloadResponse, response, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -63,6 +63,10 @@ function download_artifact() {
                         return [4 /*yield*/, artifactClient.downloadArtifact(artifactName, path, options)];
                     case 1:
                         downloadResponse = _a.sent();
+                        console.log("Downloaded Artifacts!");
+                        for (response in downloadResponse) {
+                            console.log(response);
+                        }
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
@@ -73,5 +77,6 @@ function download_artifact() {
             });
         });
     }
+    run();
 }
 download_artifact();

@@ -21,6 +21,10 @@ function download_artifact()
   async function run(): Promise<void> {
     try {
       const downloadResponse = await artifactClient.downloadArtifact(artifactName, path, options);
+      console.log("Downloaded Artifacts!")
+      for (const response in downloadResponse) {
+        console.log(response);
+      }
     }
     catch(err) {
       console.log(err.message)
