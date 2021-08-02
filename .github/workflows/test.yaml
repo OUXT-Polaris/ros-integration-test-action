@@ -24,7 +24,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: repos_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
-        path: ${{ matrix.repository_type }}.repos
+        path: .github/workflows/${{ matrix.repository_type }}.repos
     - name: Run ros integration test action
       uses: ./
       with:
