@@ -18,11 +18,9 @@ RUN npm install -g n
 RUN n v14.15.0
 RUN apt-get purge -y nodejs npm
 
-COPY upload_artifact/ /upload_artifact/
-
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
-COPY upload_artifact/ /upload_artifact/
+COPY artifact_controller/ /artifact_controller/
 
 RUN ["chmod", "+x", "/entrypoint.sh"]
 
