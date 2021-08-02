@@ -24,7 +24,7 @@ echo "sh /opt/ros/$ROSDISTRO/setup.sh" >> entrypoint.sh
 echo "sh /colcon_ws/install/local_setup.sh" >> entrypoint.sh
 echo "$TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
 echo "$CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
-echo "cd /upload_artifact" >> entrypoint.sh
+echo "cd /artifact_controller" >> entrypoint.sh
 echo "npm install" >> entrypoint.sh
 echo "npm run download $REPOS_ARTIFACTS_NAME" >> entrypoint.sh
 echo "vcs import src < /$REPOS_ARTIFACTS_NAME" >> entrypoint.sh
@@ -38,7 +38,6 @@ echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 docker build -t runtime_image \
     --build-arg base_image="$BASE_IMAGE" \
     --build-arg tag="$TAG" \
-    --build-arg rosdistro="$ROSDISTRO" \
     --build-arg github_clone_token="$GITHUB_CLONE_TOKEN" \
     . \
     && docker run runtime_image
