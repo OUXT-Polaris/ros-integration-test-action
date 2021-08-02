@@ -6,6 +6,7 @@ ROSDISTRO=$3
 TEST_COMMAND=$4
 CHECK_RESULT_COMMAND=$5
 ARTIFACTS_NAME=$6
+REPOS_ARTIFACTS_NAME=$7
 
 cd /runtime_image
 
@@ -25,6 +26,11 @@ echo "$TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
 echo "$CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
 echo "cd /upload_artifact" >> entrypoint.sh
 echo "npm install" >> entrypoint.sh
+echo "npm run download $REPOS_ARTIFACTS_NAME" >> entrypoint.sh
+echo "vcs import src < /$REPOS_ARTIFACTS_NAME" >> entrypoint.sh
+echo "cd /colcon_ws" >> entrypoint.sh
+echo "rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
+echo "colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
 # here we can make the construction of the image as customizable as we need
