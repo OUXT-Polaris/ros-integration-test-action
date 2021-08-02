@@ -58,14 +58,16 @@ jobs:
       run: cp .github/workflows/test.repos packages.repos
     # Read package.repos and run integration test.
     - name: Run ros integration test action
-      uses: OUXT-Polaris/ros-integration-test-action@0.0.4
+      uses: OUXT-Polaris/ros-integration-test-action@0.0.6
       with:
         base_image: ros
         tag: ${{ matrix.rosdistro }}
         rosdistro: ${{ matrix.rosdistro }}
         test_command: ls /colcon_ws/src
         check_result_command: ls /colcon_ws/src
-        artifact_name: artifacts_${{ matrix.rosdistro }}
+        artifact_name: artifacts_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
+        repos_artifact_name: repos_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
+        repos_filename: ${{ matrix.repository_type }}.repos
       env:
         ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         ACTIONS_RUNTIME_URL: ${{ env.ACTIONS_RUNTIME_URL }}
