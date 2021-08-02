@@ -25,4 +25,4 @@ COPY artifact_controller/ /artifact_controller/
 RUN ["chmod", "+x", "/entrypoint.sh"]
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+ENTRYPOINT ["bash", "/entrypoint.sh"]
