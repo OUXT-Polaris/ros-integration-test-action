@@ -35,55 +35,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var yargs = require('yargs');
-var argv = yargs
-    .option('artifact_name', {
-    description: 'Name of artifact',
-    type: 'string',
-})
-    .help()
-    .alias('help', 'h')
-    .argv;
-console.log(argv._[0]);
-var artifact = require('@actions/artifact');
-var artifactClient = artifact.create();
-var artifactName = argv._[0];
-var globPattern = '/artifacts/*';
-var rootDirectory = '/artifacts';
-var path = require('path');
-var glob = require('glob');
-function find(pattern) {
-    return glob.sync(pattern);
-}
-var artifacts = find(globPattern);
-console.log(artifacts);
-var options = {
-    continueOnError: false
-};
-function run() {
-    return __awaiter(this, void 0, void 0, function () {
-        var uploadResult, err_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, artifactClient.uploadArtifact(artifactName, artifacts, rootDirectory, options)];
-                case 1:
-                    uploadResult = _a.sent();
-                    if (uploadResult.failedItems.length > 0) {
-                        console.log("failed to upload artifact");
-                    }
-                    else {
-                        console.log("all files uploaded");
-                    }
-                    return [3 /*break*/, 3];
-                case 2:
-                    err_1 = _a.sent();
-                    console.log(err_1.message);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+function download_artifact() {
+    var yargs = require('yargs');
+    var argv = yargs
+        .option('artifact_name', {
+        description: 'Name of artifact',
+        type: 'string',
+    })
+        .help()
+        .alias('help', 'h')
+        .argv;
+    console.log(argv._[0]);
+    var artifact = require('@actions/artifact');
+    var artifactClient = artifact.create();
+    var artifactName = argv._[0];
+    var path = "/";
+    var options = {
+        createArtifactFolder: false
+    };
+    function run() {
+        return __awaiter(this, void 0, void 0, function () {
+            var downloadResponse, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, artifactClient.downloadArtifact(artifactName, path, options)];
+                    case 1:
+                        downloadResponse = _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_1 = _a.sent();
+                        console.log(err_1.message);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
         });
-    });
+    }
 }
-run();
+download_artifact();

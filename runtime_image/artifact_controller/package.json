@@ -1,9 +1,10 @@
 {
-  "name": "upload_artifact",
+  "name": "artifact_controller",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "upload": "node upload_artifact.js"
+    "upload": "node upload_artifact.js",
+    "download" : "node download_artifact"
   },
   "author": "",
   "license": "ISC",
