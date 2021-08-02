@@ -32,6 +32,7 @@ echo "vcs import src < /$REPOS_FILENAME" >> entrypoint.sh
 echo "rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
 echo "colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release" >> entrypoint.sh
 echo "sh /colcon_ws/install/local_setup.sh" >> entrypoint.sh
+echo "cd /artifact_controller" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
 # here we can make the construction of the image as customizable as we need
