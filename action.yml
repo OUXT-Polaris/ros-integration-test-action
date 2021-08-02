@@ -28,6 +28,12 @@ inputs:
     description: 'name of output artifact'
     required: false
     default: 'artifacts'
+  repos_artifact_name:
+    description: 'artifact name of repos file you want to download and use in this action'
+    required: true
+  repos_filename:
+    description: 'name of repos file you want to use in this action'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -38,3 +44,5 @@ runs:
     - ${{ inputs.test_command }}
     - ${{ inputs.check_result_command }}
     - ${{ inputs.artifact_name }}
+    - ${{ inputs.repos_artifact_name }}
+    - ${{ inputs.repos_filename }}
