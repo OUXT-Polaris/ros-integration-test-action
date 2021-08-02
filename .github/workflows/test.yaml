@@ -21,8 +21,10 @@ jobs:
     steps:
     # To use this repository's private action, you must check out the repository
     - uses: actions/checkout@v2
-    - name: Copy and rename repos file
-      run: cp .github/workflows/${{ matrix.repository_type }}.repos packages.repos
+    - uses: actions/upload-artifact@v2
+      with:
+        name: repos_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
+        path: ${{ matrix.repository_type }}.repos
     - name: Run ros integration test action
       uses: ./
       with:
@@ -32,6 +34,7 @@ jobs:
         test_command: ls /colcon_ws/src
         check_result_command: ls /colcon_ws/src
         artifact_name: artifacts_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
+        repos_artifact_name: repos_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
       env:
         ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         ACTIONS_RUNTIME_URL: ${{ env.ACTIONS_RUNTIME_URL }}
