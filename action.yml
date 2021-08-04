@@ -37,7 +37,7 @@ inputs:
   colcon_args:
     description: 'argument for colcon build'
     required: false
-    default: '--symlink-install'
+    default: '--ament-cmake-args -DCMAKE_CXX_FLAGS="-fprofile-arcs -ftest-coverage -DCOVERAGE_RUN=1" --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo'
 runs:
   using: 'docker'
   image: 'Dockerfile'

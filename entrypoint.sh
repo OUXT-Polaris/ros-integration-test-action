@@ -31,6 +31,7 @@ echo "source /opt/ros/$ROSDISTRO/setup.bash && rosdep install -iry --from-paths 
 echo "source /opt/ros/$ROSDISTRO/setup.bash && colcon build $COLCON_ARGS" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
+echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.base --initial"
 echo "cd /artifact_controller" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
 
