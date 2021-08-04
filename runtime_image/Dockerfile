@@ -11,9 +11,10 @@ ARG github_clone_token
 RUN git config --global url."https://${github_clone_token}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
 RUN mkdir -p /artifacts
+RUN mkdir -p /lcov
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
-RUN apt-get update && apt-get install -y wget nodejs npm
+RUN apt-get update && apt-get install -y wget nodejs npm lcov
 RUN npm install -g n
 RUN n v14.15.0
 RUN apt-get purge -y nodejs npm
@@ -21,6 +22,7 @@ RUN apt-get purge -y nodejs npm
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 COPY artifact_controller/ /artifact_controller/
+COPY .lcovrc /colcon_ws/.lcovrc
 
 RUN ["chmod", "+x", "/entrypoint.sh"]
 

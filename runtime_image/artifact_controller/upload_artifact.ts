@@ -6,6 +6,10 @@ function upload_artifact()
       description: 'Name of artifact',
       type: 'string',
     })
+    .option('root_directory', {
+      description: 'Name of root directory',
+      type: 'string',
+    })
     .help()
     .alias('help', 'h')
     .argv;
@@ -15,8 +19,8 @@ function upload_artifact()
   const artifact = require('@actions/artifact');
   const artifactClient = artifact.create()
   const artifactName = argv._[0];
-  const globPattern = '/artifacts/*'
-  const rootDirectory = '/artifacts';
+  const rootDirectory = argv._[1];
+  const globPattern = rootDirectory + '/*';
   
   const path = require('path');
   const glob = require('glob');

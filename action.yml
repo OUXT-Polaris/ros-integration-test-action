@@ -37,7 +37,11 @@ inputs:
   colcon_args:
     description: 'argument for colcon build'
     required: false
-    default: '--symlink-install'
+    default: '--ament-cmake-args -DCMAKE_CXX_FLAGS="-fprofile-arcs -ftest-coverage -DCOVERAGE_RUN=1" --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo'
+  lcov_artifacts_name:
+    description: 'name of lcov result artifact'
+    required: false
+    default: 'lcov'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -51,3 +55,4 @@ runs:
     - ${{ inputs.repos_artifact_name }}
     - ${{ inputs.repos_filename }}
     - ${{ inputs.clocon_args }}
+    - ${{ inputs.lcov_artifacts_name }}
