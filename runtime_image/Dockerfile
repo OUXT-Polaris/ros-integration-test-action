@@ -1,4 +1,6 @@
 # Container image that runs your code
+FROM node:14.15.5-slim
+
 ARG base_image
 ARG tag
 FROM ${base_image}:${tag}
@@ -13,10 +15,6 @@ RUN git config --global url."https://${github_clone_token}:x-oauth-basic@github.
 RUN mkdir -p /artifacts
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
-RUN apt-get update && apt-get install -y wget nodejs npm
-RUN npm install -g n
-RUN n v14.15.0
-RUN apt-get purge -y nodejs npm
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
