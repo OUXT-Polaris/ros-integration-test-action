@@ -29,11 +29,10 @@ echo "find $REPOS_FILENAME" >> entrypoint.sh
 echo "cd /colcon_ws" >> entrypoint.sh
 echo "vcs import src < /$REPOS_FILENAME" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
-echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.base --initial" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && colcon build $COLCON_ARGS" >> entrypoint.sh
+echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.base --initial" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
-
 echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.test" >> entrypoint.sh
 echo "lcov --config-file .lcovrc -a lcov.base -a lcov.test -o lcov.total" >> entrypoint.sh
 echo "lcov --config-file .lcovrc -r lcov.total '*/build/*' '*/install/*' '*/test/*' '*/CMakeCCompilerId.c' '*/CMakeCXXCompilerId.cpp' '*_msgs/*' -o lcov.total.filtered" >> entrypoint.sh
