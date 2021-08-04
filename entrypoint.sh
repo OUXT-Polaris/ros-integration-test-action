@@ -35,9 +35,10 @@ echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_s
 echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.base --initial" >> entrypoint.sh
 echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.test" >> entrypoint.sh
 echo "lcov --config-file .lcovrc -r lcov.total '*/build/*' '*/install/*' '*/test/*' '*/CMakeCCompilerId.c' '*/CMakeCXXCompilerId.cpp' '*_msgs/*' -o lcov.total.filtered" >> entrypoint.sh
+echo "mv /colcon_ws/lcov.total.filtered /lcov" >> entrypoint.sh
 echo "cd /artifact_controller" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME /artifacts" >> entrypoint.sh
-echo "npm run upload $LCOV_ARTIFACTS_NAME /colcon_ws" >> entrypoint.sh
+echo "npm run upload $LCOV_ARTIFACTS_NAME /lcov" >> entrypoint.sh
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs

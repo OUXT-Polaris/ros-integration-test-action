@@ -11,6 +11,7 @@ ARG github_clone_token
 RUN git config --global url."https://${github_clone_token}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
 RUN mkdir -p /artifacts
+RUN mkdir -p /lcov
 RUN mkdir -p /colcon_ws/src
 WORKDIR /colcon_ws
 RUN apt-get update && apt-get install -y wget nodejs npm lcov
