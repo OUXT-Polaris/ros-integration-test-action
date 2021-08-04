@@ -31,8 +31,8 @@ jobs:
         base_image: ros
         tag: ${{ matrix.rosdistro }}
         rosdistro: ${{ matrix.rosdistro }}
-        test_command: ls /colcon_ws/src
-        check_result_command: ls /colcon_ws/src
+        test_command: colcon test
+        check_result_command: colcon test-result --verbose
         artifact_name: artifacts_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
         repos_artifact_name: repos_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
         repos_filename: ${{ matrix.repository_type }}.repos
