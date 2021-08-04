@@ -17,6 +17,7 @@ If you want to run build test for ROS / ROS2 package, we recommend to use [this 
 | repos_artifact_name  | true     |                                                                                                                                       | artifact name of repos file you want to use in this action |
 | repos_filename       | true     |                                                                                                                                       | name of repos file you want to use in this action          |
 | colcon_args          | false    | --ament-cmake-args -DCMAKE_CXX_FLAGS="-fprofile-arcs -ftest-coverage -DCOVERAGE_RUN=1" --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo | argument for colcon build                                  |
+| lcov_artifacts_name  | false    | lcov_artifacts                                                                                                                        | name of lcov result artifact                               |
 
 ## How it works?
 1. Building runtime container in [alpine linux docker continer.](https://github.com/OUXT-Polaris/ros-integration-test-action/blob/master/Dockerfile)
@@ -70,6 +71,7 @@ jobs:
         repos_artifact_name: repos_${{ matrix.rosdistro }}_${{ matrix.repository_type }}
         repos_filename: ${{ matrix.repository_type }}.repos
         colcon_args: --symlink-install
+        lcov_artifacts_name: artifacts_${{ matrix.rosdistro }}_${{ matrix.repository_type }}_lcov
       env:
         ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         ACTIONS_RUNTIME_URL: ${{ env.ACTIONS_RUNTIME_URL }}

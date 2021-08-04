@@ -9,6 +9,7 @@ ARTIFACTS_NAME=$6
 REPOS_ARTIFACTS_NAME=$7
 REPOS_FILENAME=$8
 COLCON_ARGS=$9
+LCOV_ARTIFACTS_NAME=$10
 
 cd /runtime_image
 
@@ -35,7 +36,8 @@ echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directo
 echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.test" >> entrypoint.sh
 echo "lcov --config-file .lcovrc -r lcov.total '*/build/*' '*/install/*' '*/test/*' '*/CMakeCCompilerId.c' '*/CMakeCXXCompilerId.cpp' '*_msgs/*' -o lcov.total.filtered" >> entrypoint.sh
 echo "cd /artifact_controller" >> entrypoint.sh
-echo "npm run upload $ARTIFACTS_NAME" >> entrypoint.sh
+echo "npm run upload $ARTIFACTS_NAME /artifacts" >> entrypoint.sh
+echo "npm run upload $LCOV_ARTIFACTS_NAME /colcon_ws" >> entrypoint.sh
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
