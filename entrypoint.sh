@@ -8,6 +8,7 @@ CHECK_RESULT_COMMAND=$5
 ARTIFACTS_NAME=$6
 REPOS_ARTIFACTS_NAME=$7
 REPOS_FILENAME=$8
+COLCON_ARGS=$9
 
 cd /runtime_image
 
@@ -27,7 +28,7 @@ echo "find $REPOS_FILENAME" >> entrypoint.sh
 echo "cd /colcon_ws" >> entrypoint.sh
 echo "vcs import src < /$REPOS_FILENAME" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
-echo "source /opt/ros/$ROSDISTRO/setup.bash && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release" >> entrypoint.sh
+echo "source /opt/ros/$ROSDISTRO/setup.bash && colcon build $COLCON_ARGS" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
 echo "cd /artifact_controller" >> entrypoint.sh
