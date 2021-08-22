@@ -42,6 +42,10 @@ inputs:
     description: 'name of lcov result artifact'
     required: false
     default: 'lcov'
+  with_lcov:
+    description: 'collect metrics with lcov'
+    required: false
+    default: 'true'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -56,3 +60,4 @@ runs:
     - ${{ inputs.repos_filename }}
     - ${{ inputs.clocon_args }}
     - ${{ inputs.lcov_artifacts_name }}
+    - ${{ inputs.with_lcov }}

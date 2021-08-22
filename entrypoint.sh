@@ -10,6 +10,7 @@ REPOS_ARTIFACTS_NAME=$7
 REPOS_FILENAME=$8
 COLCON_ARGS=$9
 LCOV_ARTIFACTS_NAME="${10}"
+WITH_LCOV="${11}"
 
 cd /runtime_image
 
@@ -30,16 +31,22 @@ echo "cd /colcon_ws" >> entrypoint.sh
 echo "vcs import src < /$REPOS_FILENAME" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && colcon build $COLCON_ARGS" >> entrypoint.sh
-echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.base --initial" >> entrypoint.sh
-echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
-echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
-echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.test" >> entrypoint.sh
-echo "lcov --config-file .lcovrc -a lcov.base -a lcov.test -o lcov.total" >> entrypoint.sh
-echo "lcov --config-file .lcovrc -r lcov.total '*/build/*' '*/install/*' '*/test/*' '*/CMakeCCompilerId.c' '*/CMakeCXXCompilerId.cpp' '*_msgs/*' -o lcov.total.filtered" >> entrypoint.sh
-echo "mv /colcon_ws/lcov.total.filtered /lcov" >> entrypoint.sh
+if [ $WITH_LCOV = "true" ]; then
+    echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.base --initial" >> entrypoint.sh
+    echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $TEST_COMMAND > /artifacts/test_command_output.txt" >> entrypoint.sh
+    echo "source /opt/ros/$ROSDISTRO/setup.bash && source /colcon_ws/install/local_setup.bash && $CHECK_RESULT_COMMAND > /artifacts/check_result_command.txt" >> entrypoint.sh
+    echo "lcov --config-file .lcovrc --base-directory /colcon_ws --capture --directory build -o lcov.test" >> entrypoint.sh
+    echo "lcov --config-file .lcovrc -a lcov.base -a lcov.test -o lcov.total" >> entrypoint.sh
+    echo "lcov --config-file .lcovrc -r lcov.total '*/build/*' '*/install/*' '*/test/*' '*/CMakeCCompilerId.c' '*/CMakeCXXCompilerId.cpp' '*_msgs/*' -o lcov.total.filtered" >> entrypoint.sh
+    echo "mv /colcon_ws/lcov.total.filtered /lcov" >> entrypoint.sh
+fi
+
 echo "cd /artifact_controller" >> entrypoint.sh
 echo "npm run upload $ARTIFACTS_NAME /artifacts" >> entrypoint.sh
-echo "npm run upload $LCOV_ARTIFACTS_NAME /lcov" >> entrypoint.sh
+
+if [ $WITH_LCOV = "true" ]; then
+    echo "npm run upload $LCOV_ARTIFACTS_NAME /lcov" >> entrypoint.sh
+fi
 
 # here we can make the construction of the image as customizable as we need
 # and if we need parameterizable values it is a matter of sending them as inputs
