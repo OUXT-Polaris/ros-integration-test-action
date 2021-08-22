@@ -54,7 +54,7 @@ function upload_artifact() {
     var artifactClient = artifact.create();
     var artifactName = argv._[0];
     var rootDirectory = argv._[1];
-    var globPattern = rootDirectory + '/*';
+    var globPattern = rootDirectory + '/**';
     var path = require('path');
     var glob = require('glob');
     function find(pattern) {
