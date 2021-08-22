@@ -20,7 +20,7 @@ function upload_artifact()
   const artifactClient = artifact.create()
   const artifactName = argv._[0];
   const rootDirectory = argv._[1];
-  const globPattern = rootDirectory + '/*';
+  const globPattern = rootDirectory + '/**';
   
   const path = require('path');
   const glob = require('glob');
