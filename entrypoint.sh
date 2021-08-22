@@ -29,7 +29,7 @@ echo "cd /" >> entrypoint.sh
 echo "find $REPOS_FILENAME" >> entrypoint.sh
 echo "cd /colcon_ws" >> entrypoint.sh
 echo "vcs import src < /$REPOS_FILENAME" >> entrypoint.sh
-echo "source /opt/ros/$ROSDISTRO/setup.bash && rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
+echo "source /opt/ros/$ROSDISTRO/setup.bash && rosdep update && rosdep install -iry --from-paths src --rosdistro $ROSDISTRO" >> entrypoint.sh
 echo "source /opt/ros/$ROSDISTRO/setup.bash && colcon build $COLCON_ARGS" >> entrypoint.sh
 
 if [ $WITH_LCOV = "true" ]; then
