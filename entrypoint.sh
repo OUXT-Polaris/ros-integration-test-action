@@ -12,10 +12,13 @@ COLCON_ARGS=$9
 LCOV_ARTIFACTS_NAME="${10}"
 WITH_LCOV="${11}"
 
+set -e
+
 cd /runtime_image
 
 touch entrypoint.sh
 echo "#!/bin/bash -l" >> entrypoint.sh
+echo "#!/set -e" >> entrypoint.sh
 echo "ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
 echo "export ACTIONS_RUNTIME_TOKEN" >> entrypoint.sh
 echo "ACTIONS_RUNTIME_URL=$ACTIONS_RUNTIME_URL" >> entrypoint.sh
